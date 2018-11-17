@@ -1,0 +1,54 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        applicationId "ua.ck.zabochen.databinding"
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // Anko
+    def anko_version = "0.10.8"
+    implementation "org.jetbrains.anko:anko-commons:$anko_version"
+
+    // Google AndroidX
+    def androidx_support_version = "1.0.2"
+    implementation "androidx.appcompat:appcompat:$androidx_support_version"
+    implementation "androidx.constraintlayout:constraintlayout:2.0.0-alpha2"
+
+    // ButterKnife
+    def butterKnife_version = "9.0.0-SNAPSHOT"
+    implementation "com.jakewharton:butterknife:$butterKnife_version"
+    kapt "com.jakewharton:butterknife-compiler:$butterKnife_version"
+
+    // JUnit
+    testImplementation "junit:junit:4.12"
+    androidTestImplementation "androidx.test:runner:1.1.0"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.1.0"
+}
